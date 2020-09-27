@@ -8,7 +8,9 @@
  * https://sailsjs.com/anatomy/config/routes-js
  */
 
-module.exports.routes = {
+var routes_api = require('./routes/api');
+
+module.exports.routes = Object.assign(routes_api.api, {
 
   /***************************************************************************
   *                                                                          *
@@ -19,9 +21,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
-
-
+  'GET /login': { action: 'backend/entrance/view-login', locals: { layout: 'backend/layouts/layout-guest' } },
+  'GET /': { action: 'backend/product/index'},
+  'GET /product/:id': { action: 'backend/product/form'},
+  'GET /:productType': { action: 'backend/product/index'},
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
@@ -34,4 +37,4 @@ module.exports.routes = {
   ***************************************************************************/
 
 
-};
+});
