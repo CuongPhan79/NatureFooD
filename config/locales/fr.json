@@ -1,4 +1,7 @@
 {
-  "Welcome": "Bienvenue",
-  "A brand new app.": "Une toute nouvelle application."
+	"Welcome": "Bienvenue",
+	"A brand new app.": "Une toute nouvelle application.",
+	"Vui lòng nhập đúng thông tin của email.": "Vui lòng nhập đúng thông tin của email.",
+	"Vui lòng nhập e-mail.": "Vui lòng nhập e-mail.",
+	"Vui lòng nhập mật khẩu.": "Vui lòng nhập mật khẩu."
 }
