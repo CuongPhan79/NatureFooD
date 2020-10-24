@@ -1,0 +1,45 @@
+<% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.css">') %>
+<% block('localCss', '<link rel="stylesheet" href="/vendors/formvalidation/formValidation.css">') %>
+<% block('localCss', '<link rel="stylesheet" href="/vendors/dropify/dropify.min.css">') %>
+<% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.min.css">') %>
+<div class="row">
+    <div class="card">
+    </div>
+</div>
+
+<% if (items == 0 || items.totalQty == 0 ) { -%>
+    <h3>Sorry, no items in your cart</h3>
+    <% } else { -%>
+        
+        <table class="table table-borderless">
+        <thead>
+         <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th></th>
+         </tr>
+        </thead>
+        <tbody>
+         <% Object.keys(items).forEach( function(item) { %>
+          <tr>
+           <td> <%= items[item].product.title %> </td>
+           <td> 
+            <form action="/update-cart-item" method="post">
+             <input type="hidden" name="_csrf" value="<%= _csrf %>">
+             <input type="number" class="quantity" value="<%= items[item].qty %>" data-id-prod= <%=items[item].product.id%>>
+            </form>
+           </td>
+           <td> <%= items[item].product.price *  items[item].qty%> </td>
+           <td><button class="remove-row"  data-id-prod= <%=items[item].product.id%>>x</button></td>
+          </tr>
+         <% }) %>
+        </tbody>
+        </table>
+    <% } -%>
+<% block('localScripts', '<script src="/vendors/select2/select2.full.min.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/formvalidation/formValidation.min.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/formvalidation/framework/bootstrap4.min.js"></script>') %>
+<% block('localScripts', '<script src="/js/backend/cart/index.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/sweetalert/sweetalert.min.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/select2/select2.js"></script>') %>

@@ -29,6 +29,7 @@
                         <p><%= product.title%></p>
                         <h2 class="mb-0 text-danger"><%= product.price%> đ</h2>
                     </div>
+                    <button id="cart" name="cart" class="btn btn-primary cart-row" data-id= <%=product.id%> >Add to card</button>
                     <a href="/product/<%=product.id%>">
                         <div class="icon-box-primary icon-box-md">
                         <i class="mdi mdi-cart"></i>

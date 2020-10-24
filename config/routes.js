@@ -25,16 +25,6 @@ module.exports.routes = Object.assign(routes_api.api, {
   'GET /': { action: 'backend/product/index'},
   'GET /product/:id': { action: 'backend/product/form'},
   'GET /:productType': { action: 'backend/product/index'},
-  /***************************************************************************
-  *                                                                          *
-  * More custom routes here...                                               *
-  * (See https://sailsjs.com/config/routes for examples.)                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the routes in this file, it   *
-  * is matched against "shadow routes" (e.g. blueprint routes).  If it does  *
-  * not match any of those, it is matched against static assets.             *
-  *                                                                          *
-  ***************************************************************************/
-
+  'GET /cart':{ action: 'backend/cart/index'}
 
 });

@@ -23,6 +23,20 @@ Cloud.setup({
             "url": "/api/product/buy",
             "args": []
         },
-        
+        "addCart": {
+            "verb": "GET",
+            "url": "/api/addCart/:id",
+            "args": ["id"]
+        },
+        "checkCart": {
+            "verb": "GET",
+            "url": "/api/checkCart",
+            "args": []
+        },
+        "delCart": {
+            "verb": "GET",
+            "url": "/api/delCart/:id",
+            "args": ["id"]
+        },
     }
 })

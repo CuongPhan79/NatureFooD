@@ -80,5 +80,9 @@ ESTOREPRO.initialize = function () {
             curBackendEKP = new IndexFormProductBackendEKP();
             break;
         //------------------------------------------------
+        case 'backend/cart/index':
+            curBackendEKP = new IndexListCartBackendEKP();
+            break;
+        //------------------------------------------------
     }      
 }

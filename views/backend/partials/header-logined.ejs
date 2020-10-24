@@ -6,18 +6,18 @@
     <ul class="navbar-nav mr-lg-4 w-100">
       <li class="nav-item nav-search d-none d-lg-block w-100">
         <div class="input-group">
-          <input id="search" name="search" type="text" class="form-control" placeholder="Tìm kiếm trên EstorePro"  aria-describedby="search" value= "<%= search ? search:'' %>" >
+          <input id="search" name="search" type="text" class="form-control" placeholder="Tìm kiếm trên EstorePro"  aria-describedby="search"  %>" >
           <div class="input-group-addon input-group-append"><i class="mdi mdi-clock input-group-text"></i></div>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav mr-lg-4 w-100">
-        <button id="findBox" type="button" class="btn btn-primary btn-icon-text">
-          <i class="mdi mdi-magnify btn-icon-prepend"></i>                                                    
-          Tìm kiếm
-        </button>
+      <button id="findBox" type="button" class="btn btn-primary btn-icon-text">
+        <i class="mdi mdi-magnify btn-icon-prepend"></i>                                                    
+        Tìm kiếm
+      </button>
     </ul>
-    <ul class="menuTop navbar-nav navbar-nav-right">
+    <ul class="navbar-nav mr-lg-4 w-100">
       <%if(userActive){%>
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
@@ -46,7 +46,15 @@
       </li>
       <h4 hidden id="user">nobody</h4>
     <%}%>
+    <li class="nav-item nav-profile">
+      <a href="cart" type="button" class="btn btn-outline-light btn-fw">
+        <i class="mdi mdi-cart btn-icon-prepend"></i>                                                    
+        Giỏ hàng <div class="badge badge-pill badge-warning" id="numberCart">0</div>
+      </a>
+    </li>
+    
   </ul>
+  
     <div class="col-1"></div>
   </div>
 </nav>
