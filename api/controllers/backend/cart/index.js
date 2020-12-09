@@ -14,11 +14,11 @@ module.exports = {
       _default.productTypeObj = productTypeObj;
       var cart = this.req.session.cart
       if (cart != undefined) {
-      var items = cart.items
+      var cart = cart
       } else {
-      var items = 0
+      var cart = 0
       }
-      _default.items = items
+      _default.cart = cart
       return exits.success(_default);
     }
   };

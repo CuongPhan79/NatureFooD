@@ -387,6 +387,13 @@ h4.mb-0.schedule-title {
   color: #000;
   font-size: 18px;
 }
+.empty {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  text-align: center;
+}
 #addScheduleButton {
   position: fixed;
   bottom: 40px;

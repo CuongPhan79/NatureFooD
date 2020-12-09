@@ -6,5 +6,5 @@ module.exports.api = {
     'GET /api/addCart/:id': { controller: 'backend/cart/CartController', action: 'add' },
     'GET /api/delCart/:id': { controller: 'backend/cart/CartController', action: 'del' },
     'GET /api/checkCart': { controller: 'backend/cart/CartController', action: 'checkCart' },
-    
+    'GET /api/checkoutpaypal': { controller: 'backend/cart/PaymentController', action: 'checkoutPaypal' },
 }

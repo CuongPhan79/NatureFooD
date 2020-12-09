@@ -92,7 +92,5 @@ and exposed as \`req.me\`.)`
       user: userRecord,
       description: 'Log in success.'
     });
-
   }
-
 };

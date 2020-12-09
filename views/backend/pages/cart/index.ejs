@@ -2,41 +2,97 @@
 <% block('localCss', '<link rel="stylesheet" href="/vendors/formvalidation/formValidation.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/dropify/dropify.min.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.min.css">') %>
-<div class="row">
-    <div class="card">
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-1 grid-margin stretch-card"></div>
+            <div class="col-lg-10 grid-margin stretch-card">
+                    <% if (cart == 0 || cart.totalQty == 0 ) { %>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="empty">
+                                        <img src="/images/cartEmpty.png">
+                                        <br>
+                                        <br>
+                                        <h5>Không có sản phẩm nào trong giỏ hàng của bạn.</h5>
+                                        <br>
+                                        <br>
+                                        <a href="/" class="btn btn-success">Tiếp tục mua sắm</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>
+                    <div class="col-lg-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th>#</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% Object.keys(cart.items).forEach( function(item) { %>
+                                    <tr>
+                                    <td> <%= cart.items[item].product.title %> </td>
+                                    <td> 
+                                    <form action="/update-cart-item" method="post">
+                                        <input type="hidden" name="_csrf" value="<%= _csrf %>">
+                                        <input type="number" class="quantity" value="<%= cart.items[item].qty %>" data-id-prod= <%=cart.items[item].product.id%>>
+                                    </form>
+                                    </td>
+                                    <td> <%= cart.items[item].product.price *  cart.items[item].qty%> </td>
+                                    <td><button class="remove-row"  data-id-prod= <%=cart.items[item].product.id%>>x</button></td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body border-bottom">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6 class="text-secondary">Tạm tính</h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 id="priceCart" class="text-right"><%=cart.totalPrice%> đ</h6>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6 class="text-secondary">Thành tiền</h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4 class="text-right text-danger" id="totalPriceCart" ><%=cart.totalPrice%> đ</h4>
+                                        <small id="emailHelp" class="form-text text-muted text-right">(Đã bao gồm VAT nếu có)</small>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/shipping" class="btn btn-success btn-lg btn-block btn-sm mt-3">Tiến hành đặt hàng</a>
+                    </div>
+                    <% } %>
+            </div>
+            <div class="col-lg-1 grid-margin stretch-card"></div>
+        </div>
     </div>
 </div>
 
-<% if (items == 0 || items.totalQty == 0 ) { -%>
-    <h3>Sorry, no items in your cart</h3>
-    <% } else { -%>
-        
-        <table class="table table-borderless">
-        <thead>
-         <tr>
-          <th>Item</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th></th>
-         </tr>
-        </thead>
-        <tbody>
-         <% Object.keys(items).forEach( function(item) { %>
-          <tr>
-           <td> <%= items[item].product.title %> </td>
-           <td> 
-            <form action="/update-cart-item" method="post">
-             <input type="hidden" name="_csrf" value="<%= _csrf %>">
-             <input type="number" class="quantity" value="<%= items[item].qty %>" data-id-prod= <%=items[item].product.id%>>
-            </form>
-           </td>
-           <td> <%= items[item].product.price *  items[item].qty%> </td>
-           <td><button class="remove-row"  data-id-prod= <%=items[item].product.id%>>x</button></td>
-          </tr>
-         <% }) %>
-        </tbody>
-        </table>
-    <% } -%>
+
+
 <% block('localScripts', '<script src="/vendors/select2/select2.full.min.js"></script>') %>
 <% block('localScripts', '<script src="/vendors/formvalidation/formValidation.min.js"></script>') %>
 <% block('localScripts', '<script src="/vendors/formvalidation/framework/bootstrap4.min.js"></script>') %>

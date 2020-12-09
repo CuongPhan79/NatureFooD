@@ -21,7 +21,8 @@ class FormIndexProductBackendEKP {
 	initialize() {
 		let _this = this;
 		_this.initFindBox();
-		_this.initBuy();
+		_this.handleItemActions();
+		_this.initNumberProductCart();
 	}
 	initFindBox(){
 		$('#findBox').on("click", (e) => {
@@ -32,17 +33,47 @@ class FormIndexProductBackendEKP {
 			window.location = `/?search=${search}`;
 		})
 	}
-	initBuy(){
-		$('#btnFormProduct').on("click", (e) => {
-			let user = $('#user').html();
-			if(user!='nobody') {
-				Cloud.buyProduct.with().protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
-
-				});
-			}else{
-				window.location = `/login`;
+	handleItemActions() {
+		let _this =  this;
+		// ONCLICK BUTTON ADD CART
+		$('.cart-row').on('click', function (e) {
+			let id = $(this).attr('data-id');
+			Cloud.addCart.with({ id: id }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+				if (err) {
+					console.log(err);
+					$.toast({
+						heading: 'Error',
+						text: 'Thêm sản phẩm vào giỏ hàng lỗi!!!',
+						position: 'top-right',
+						loaderBg:'#ff6849',
+						icon: 'error',
+						hideAfter: 3000
+					  });
+					return;
+				} else {
+					_this.initNumberProductCart();
+					$.toast({
+						heading: 'Successfully',
+						text: 'Đã thêm sản phẩm vào giỏ hàng',
+						position: 'top-right',
+						loaderBg:'#ff6849',
+						icon: 'success',
+						hideAfter: 3000
+					});
+				}
+				//let _data = responseBody;
+			})
+		})
+	}
+	initNumberProductCart() {
+		Cloud.checkCart.with({}).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+			if (err) {
+				console.log(err);
+				return;
+			} else if (responseBody) {
+				$('#numberCart').html(responseBody.cart.totalQty)
 			}
-			
+			//let _data = responseBody;
 		})
 	}
 }

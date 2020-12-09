@@ -3,5 +3,21 @@
 	"A brand new app.": "Une toute nouvelle application.",
 	"Vui lòng nhập đúng thông tin của email.": "Vui lòng nhập đúng thông tin của email.",
 	"Vui lòng nhập e-mail.": "Vui lòng nhập e-mail.",
-	"Vui lòng nhập mật khẩu.": "Vui lòng nhập mật khẩu."
+	"Vui lòng nhập mật khẩu.": "Vui lòng nhập mật khẩu.",
+	"Họ": "Họ",
+	"Địa chỉ Email": "Địa chỉ Email",
+	"Email không được để trống": "Email không được để trống",
+	"Định dạng email không hợp lệ": "Định dạng email không hợp lệ",
+	"Số điện thoại": "Số điện thoại",
+	"Số điện thoại không được để trống": "Số điện thoại không được để trống",
+	"Số điện thoại phải gồm 10 hoặc 11 chữ số": "Số điện thoại phải gồm 10 hoặc 11 chữ số",
+	"Mật khẩu": "Mật khẩu",
+	"Mật khẩu phải dài ít nhất 6 kí tự và bao gồm số, chữ in hoa, chữ in thường.": "Mật khẩu phải dài ít nhất 6 kí tự và bao gồm số, chữ in hoa, chữ in thường.",
+	"Tên": "Tên",
+	"Địa chỉ": "Địa chỉ",
+	"Nhập lại mật khẩu": "Nhập lại mật khẩu",
+	"Họ và tên": "Họ và tên",
+	"Tỉnh/Thành phố": "Tỉnh/Thành phố",
+	"Quận/Huyện": "Quận/Huyện",
+	"Phường/Xã": "Phường/Xã"
 }

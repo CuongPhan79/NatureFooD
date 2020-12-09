@@ -99,7 +99,9 @@ class ListIndexCartBackendEKP {
 				console.log(err);
 				return;
 			} else if (responseBody) {
-				$('#numberCart').html(responseBody.cart.totalQty)
+				$('#numberCart').html(responseBody.cart.totalQty);
+				$('#priceCart').html(responseBody.cart.totalPrice);
+				$('#totalPriceCart').html(responseBody.cart.totalPrice);
 			}
 			//let _data = responseBody;
 		})
