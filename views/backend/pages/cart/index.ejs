@@ -32,8 +32,8 @@
                                 <thead>
                                     <tr>
                                     <th>#</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
                                     <th></th>
                                     </tr>
                                 </thead>
@@ -47,7 +47,7 @@
                                         <input type="number" class="quantity" value="<%= cart.items[item].qty %>" data-id-prod= <%=cart.items[item].product.id%>>
                                     </form>
                                     </td>
-                                    <td> <%= cart.items[item].product.price *  cart.items[item].qty%> </td>
+                                    <td> <%= cart.items[item].product.price *  cart.items[item].qty%> đ</td>
                                     <td><button class="remove-row"  data-id-prod= <%=cart.items[item].product.id%>>x</button></td>
                                     </tr>
                                     <% }) %>

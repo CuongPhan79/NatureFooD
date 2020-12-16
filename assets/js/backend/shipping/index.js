@@ -13,65 +13,85 @@ class IndexListShippingBackendEKP extends BaseBackendEKP {
 
 class ListIndexShippingBackendEKP {
 	constructor(opts) {
-		_.extend(this, opts);
+        _.extend(this, opts);
+        this.formId = 'formShipping';
+        this.formObj = $('#' + this.formId);
 		this.initialize();
 	}
 
 	initialize() {
-        let _this = this;
-        _this.initWizard();
-    }
-    initWizard() {
-        var form = $("#example-form");
-        form.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onFinished: function(event, currentIndex) {
-            alert("Submitted!");
-        }
-        });
-        var validationForm = $("#example-validation-form");
-        validationForm.val({
-        errorPlacement: function errorPlacement(error, element) {
-            element.before(error);
-        },
-        rules: {
-            confirm: {
-            equalTo: "#password"
+    let _this = this;
+    _this.initValidation();
+  }
+  initValidation() {
+    let _this = this;
+
+    _this.formObj.formValidation({
+      button: {
+        selector: '#btnShipping',
+        disabled: 'disabled',
+      },
+      fields: {
+        //Can combine both html5 mode and js mode
+        //Refer: http://formvalidation.io/examples/attribute/
+        /*alias: {
+          validators: {
+            notEmpty: {
+              message: 'The title is required and cannot be empty'
             }
+          }
+        },*/
+      },
+      err: {
+        clazz: 'invalid-feedback'
+      },
+      control: {
+        // The CSS class for valid control
+        valid: 'is-valid',
+
+        // The CSS class for invalid control
+        invalid: 'is-invalid'
+      },
+      row: {
+        invalid: 'has-danger'
+      },
+      onSuccess: function (e) {
+        //e.preventDefault();
+        //console.log('FORM can submit OK');
+      }
+    })
+    .on('success.form.fv', function (e) {
+      // Prevent form submission
+      e.preventDefault();
+      console.log('----- FORM ROLE ----- [SUBMIT][START]');
+      let $form = $(e.target);
+      let formData = $form.serializeArray();
+      let tmpData = {};
+      _.each(formData, (item) => {
+        tmpData[item.name] = item.value;
+      });
+      Cloud.addShipping.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+        if (err) {
+          if (responseBody.message) {
+            _this.alert.removeClass('d-none').addClass("alert-warning").html(responseBody.message);
+            setTimeout(function () {
+              _this.alert.removeClass('alert-warning').addClass("d-none");
+            }, 3000);
+            return;
+          } else {
+            _this.alert.removeClass('d-none').addClass("alert-danger").html(_this.messages.error);
+            setTimeout(function () {
+              _this.alert.removeClass('alert-danger').addClass("d-none");
+            }, 3000);
+          }
+          return;
+        } else {
+          window.location = `/payment`;
         }
-        });
-        validationForm.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onStepChanging: function(event, currentIndex, newIndex) {
-            validationForm.val({
-            ignore: [":disabled", ":hidden"]
-            })
-            return validationForm.val();
-        },
-        onFinishing: function(event, currentIndex) {
-            validationForm.val({
-            ignore: [':disabled']
-            })
-            return validationForm.val();
-        },
-        onFinished: function(event, currentIndex) {
-            alert("Submitted!");
-        }
-        });
-        var verticalForm = $("#example-vertical-wizard");
-        verticalForm.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        stepsOrientation: "vertical",
-        onFinished: function(event, currentIndex) {
-            alert("Submitted!");
-        }
-        });
-    }
+        //cloud success
+      });
+      console.log('----- FORM ROLE ----- [SUBMIT][END]');
+    });
+  }
 }
 

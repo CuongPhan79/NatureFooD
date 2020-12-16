@@ -38,5 +38,10 @@ Cloud.setup({
             "url": "/api/delCart/:id",
             "args": ["id"]
         },
+        "addShipping": {
+            "verb": "POST",
+            "url": "/api/addShipping",
+            "args": []
+        },
     }
 })

@@ -27,5 +27,7 @@ module.exports.routes = Object.assign(routes_api.api, {
   'GET /:productType': { action: 'backend/product/index'},
   'GET /cart':{ action: 'backend/cart/index'},
   'GET /shipping':{ action: 'backend/shipping/index'},
-  'GET /payment':{ action: 'backend/payment/index'}
+  'GET /payment':{ action: 'backend/payment/index'},
+  'GET /order':{ action: 'backend/order/index'},
+  'GET /order/detail/:id': { action: 'backend/order/detail'},
 });

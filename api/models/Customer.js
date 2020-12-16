@@ -44,7 +44,7 @@ module.exports = {
       },
       orders: {
         collection: 'order',
-        via: 'buyer'
+        via: 'customer'
       }
     }
   };

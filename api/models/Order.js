@@ -1,36 +1,27 @@
 module.exports = {
     attributes: {
-      code: {
-        type: 'string',
-        required: true,
-        unique: true
-      },
-      listProduct: {
-        type: 'json',
-        defaultsTo: []
-        },
-       note: {
-        type: 'string'
-       },
-       price: {
-        type: 'json',
-        defaultsTo: 
-          {
-            "totalPrice": 0,
-            "discount": 0,
-            "pay": 0
-          }
-       },
-       date: {
+      orderDate: {
         type: 'string',
         required: true
-       },
-       createdBy: {
-        model: 'user'
       },
-      buyer: {
+      status: {
+        type: 'number',
+        defaultsTo: 0
+      },
+      typePayment: {
+        type: 'number',
+      },
+      customer: {
         model: 'customer'
       },
+      informationReceived: {
+        type: 'json'
+      },
+      products: {
+        collection: 'product',
+        via: 'order',
+        through: 'order_product'
+      }
     }
   };
   

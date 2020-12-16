@@ -61,9 +61,5 @@ module.exports = {
       collection: 'import',
       via: 'createdBy'
     },
-    orders: {
-      collection: 'order',
-      via: 'createdBy'
-    }
   }
 };

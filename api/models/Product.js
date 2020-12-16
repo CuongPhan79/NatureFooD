@@ -36,6 +36,11 @@ module.exports = {
     },
     productType: {
       model: 'producttype'
+    },
+    orders: {
+      collection: 'order',
+      via: 'product',
+      through: 'order_product'
     }
   }
 };
