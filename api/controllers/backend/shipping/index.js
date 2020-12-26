@@ -25,6 +25,13 @@ module.exports = {
       }
       _default.cart = cart;
       _default.shipping = shipping;
+      _default.link = {
+        arrlink: [],
+        linkAcctive: {
+          name: "Địa chỉ giao hàng",
+          link: "/Shipping"
+        }
+      }
       return exits.success(_default);
     }
 };

@@ -19,7 +19,7 @@ module.exports = {
       let idOrder = this.req.param('id');
       let listOrderProduct = await Order_Product.find({order: idOrder}).populate('order').populate('product');
       let orderObj = await OrderService.get({id: idOrder});
-      orderObj.orderDate = moment(orderObj.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY')
+      orderObj.orderDate = moment(orderObj.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
       // for(let order of orders) {
       //   order.orderDate = moment(order.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
       // }
@@ -37,6 +37,16 @@ module.exports = {
       _default.listOrderProduct = listOrderProduct;
       _default.cart = cart;
       //_default.shipping = shipping;
+      _default.link = {
+        arrlink: [{
+          name: "Lịch sử mua hàng",
+          link: "/order"
+        }],
+        linkAcctive: {
+          name: "Chi tiết đơn hàng",
+          link: `/order/detail/${idOrder}`
+        }
+      }
       return exits.success(_default);
     }
 };

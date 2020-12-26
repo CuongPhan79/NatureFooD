@@ -1,0 +1,12 @@
+<!-- Page -->
+<% let BACKEND = sails.config.custom.BACKEND %>
+<div class="row">
+    <div class="col-lg-1 grid-margin stretch-card"></div>
+    <div class="col-lg-10 grid-margin stretch-card">
+        <%- partial('./_form-profile.ejs') %>
+    </div>
+    <div class="col-lg-1 grid-margin stretch-card"></div>
+</div>
+<% block('localScripts', '<script src="/js/backend/account/index.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/formvalidation/formValidation.min.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/formvalidation/framework/bootstrap4.min.js"></script>') %>

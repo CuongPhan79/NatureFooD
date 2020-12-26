@@ -19,6 +19,13 @@ module.exports = {
       var cart = 0
       }
       _default.cart = cart
+      _default.link = {
+        arrlink: [],
+        linkAcctive: {
+          name: "Giỏ hàng",
+          link: "/cart"
+        }
+      }
       return exits.success(_default);
     }
-  };
+};

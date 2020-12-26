@@ -2,48 +2,72 @@
 <% block('localCss', '<link rel="stylesheet" href="/vendors/formvalidation/formValidation.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/dropify/dropify.min.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.min.css">') %>
-<div class="main-panel">
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-lg-1 grid-margin stretch-card"></div>
-            <div class="col-lg-10 grid-margin stretch-card">
-                <div class="col-lg-12">
-                    <% _.each(orders, function (order, index) { %>
-                        <div class="row">
-                            <div class="col-md-12 grid-margin stretch-card">
-                              <div class="card">
-                                <div class="card-body border-bottom">
+<div class="row">
+    <div class="col-lg-1 grid-margin stretch-card"></div>
+    <div class="col-lg-10 grid-margin stretch-card">
+        <%if(orders.length==0){%>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="empty">
+                            <h2>Chưa có đơn hàng</h2>
+                            <br>
+                            <h5 class="text-secondary">Bạn chưa mua đơn hàng nào, hãy quay lại trang chủ để mua hàng</h5>
+                            <br>
+                            <br>
+                            <br>
+                            <img src="/images/no.jpg">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+           
+            
+        <%} else{%>
+        <div class="col-lg-12">
+            <% _.each(orders, function (order, index) { %>
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body border-bottom">
+                            <div class="row">
+                                <div class="col-md-10">
                                     <h5>Đơn hàng <a href="/order/detail/<%=order.id%>"><%=order.id%></a></h5> 
                                     <h6 class="text-secondary">Đặt ngày <%=order.orderDate%></h6>
                                 </div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <tbody>
-                                            <% _.each(order.informationReceived.cart.items, function (item, index) { %>
-                                            <tr>
-                                                <td> <%= item.product.title %> </td>
-                                                <td> Số lượng: <%= item.qty %></td>
-                                                <%if(order.status == 1) {%>
-                                                    <td class="badge badge-success badge-pill"> Đang giao hàng</td>
-                                                <% }else if(order.status == 2) {%>
-                                                    <td class="badge badge-light badge-pill"> Đã giao hàng</td>
-                                                <% } else{%>
-                                                    <td class="badge badge-warning badge-pill"> Đang chờ xác nhận </td>
-                                                <% } %>
-                                            </tr>
-                                            <% }) %>
-                                        </tbody>
-                                    </table>
+                                <div class="col-md-2">
+                                    <%if(order.status == 1) {%>
+                                        <h5 class="badge badge-success badge-pill"> Đang giao hàng</h5>
+                                    <% }else if(order.status == 2) {%>
+                                        <h5 class="badge badge-light badge-pill"> Đã giao hàng</h5>
+                                    <% } else{%>
+                                        <h5 class="badge badge-warning badge-pill"> Đang chờ xác nhận </h5>
+                                    <% } %>
                                 </div>
-                              </div>
-                            </div> 
+                            </div>
                         </div>
-                    <% }) %>
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                    <% _.each(order.informationReceived.cart.items, function (item, index) { %>
+                                    <tr>
+                                        <td width="60%"> <img src="<%=item.product.image%>" width="50px"  class="img-sm rounded-circle"><%= item.product.title %> </td>
+                                        <td width="40%"> Số lượng: <%= item.qty %></td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div> 
                 </div>
-            </div>
-            <div class="col-lg-1 grid-margin stretch-card"></div>
+            <% }) %>
         </div>
+        <%}%>
     </div>
+    <div class="col-lg-1 grid-margin stretch-card"></div>
+</div>
 </div>
 
 

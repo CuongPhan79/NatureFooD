@@ -18,7 +18,8 @@ module.exports = {
                 product: item.product.id,
                 quanlity: item.qty
             });
-        })
+        });
+        delete req.session.cart;
         return res.ok()
     },
 }

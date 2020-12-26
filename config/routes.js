@@ -22,6 +22,7 @@ module.exports.routes = Object.assign(routes_api.api, {
   ***************************************************************************/
 
   'GET /login': { action: 'backend/entrance/view-login', locals: { layout: 'backend/layouts/layout-guest' } },
+  'GET /register': { action: 'backend/entrance/view-register', locals: { layout: 'backend/layouts/layout-guest' } },
   'GET /': { action: 'backend/product/index'},
   'GET /product/:id': { action: 'backend/product/form'},
   'GET /:productType': { action: 'backend/product/index'},
@@ -30,4 +31,7 @@ module.exports.routes = Object.assign(routes_api.api, {
   'GET /payment':{ action: 'backend/payment/index'},
   'GET /order':{ action: 'backend/order/index'},
   'GET /order/detail/:id': { action: 'backend/order/detail'},
+  'GET /backend/logout': { action: 'backend/entrance/logout' },
+  'GET /evaluate/:id': { action: 'backend/evaluate/index' },
+  'GET /profile': { action: 'backend/entrance/view-edit-profile' },
 });

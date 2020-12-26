@@ -1,14 +1,28 @@
 <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-primary">
-                <li class="breadcrumb-item"><a href="/">Tất cả</a></li>
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuIconButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Danh mục sản phẩm
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton4">
+                
+                <a class="dropdown-item" href="/">Tất cả sản phẩm</a>
+                <div class="dropdown-divider"></div>
                 <%for(productType of productTypeObj){%>
-                <li class="breadcrumb-item"><a href="/<%=productType.id%>"><%=productType.title%></a></li>
+                    <a href="/<%=productType.id%>" class="dropdown-item"><%=productType.title%></a>
                 <%}%>
-            </ol>
-        </nav>
+             
+              
+            </div>
+          </div>
+        <div class="d-flex mt-3 mb-4">
+            <a href="/"> <i class="mdi mdi-home text-muted hover-cursor"></i></a>&nbsp;/&nbsp;
+            <% _.each(link.arrlink, function (item, index) { %>
+            <a  href="<%=item.link%>"class="text-muted mb-0 hover-cursor"><%=item.name%></a>&nbsp;/&nbsp;
+            <% }) %>
+            <a href="<%=link.linkAcctive.link%>" class="text-primary mb-0 hover-cursor"><%=link.linkAcctive.name%></a>
+        </div>
     </div>
     <div class="col-1"></div>
 </div>

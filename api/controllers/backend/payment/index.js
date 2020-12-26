@@ -27,7 +27,14 @@ module.exports = {
       var cart = 0
       }
       _default.cart = cart;
-      _default.shipping = shipping
+      _default.shipping = shipping;
+      _default.link = {
+        arrlink: [],
+        linkAcctive: {
+          name: "Thanh toán",
+          link: "/payment"
+        }
+      }
       return exits.success(_default);
     }
 };

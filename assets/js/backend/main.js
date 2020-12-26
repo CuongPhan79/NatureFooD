@@ -66,6 +66,68 @@ ESTOREPRO.login = function () {
             }
         });
     }
+    if ($('#frmRegister').length) {
+        $('#frmRegister').validator().on('submit', (e) => {
+            if (e.isDefaultPrevented()) {
+                //nothing
+            } else {
+                e.preventDefault();
+                //looks good
+                console.log('[SUBMIT][START] ----- frmRegister -----');
+                //prepare data
+                let formData = $('#frmRegister').serializeArray();
+                let tmpData = {};
+                _.each(formData, (item) => {
+                tmpData[item.name] = item.value;
+                });
+                //sign up start
+                Cloud.register.with(tmpData).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+                    if (err) {
+						if(err.code){
+                            $('#frmRegister').removeClass('d-none').addClass("alert-danger").html('Đã xảy ra lỗi');
+                            setTimeout(function () {
+                              $('#frmRegister').removeClass('alert-danger').addClass("d-none");
+                            }, 3000);
+                        }
+						return;
+					} else if (responseBody) {
+                        if(responseBody.code){
+                            $('.alert').removeClass('d-none').addClass("alert-danger").html(responseBody.message);
+                            setTimeout(function () {
+                              $('.alert').removeClass('alert-danger').addClass("d-none");
+                            }, 3000);
+                        }else {
+                            swal({
+                                title: 'Đăng ký thành công !',
+                                icon: 'success',
+                                button: {
+                                    text: "Tiếp tục",
+                                    value: true,
+                                    visible: true,
+                                    className: "btn btn-primary"
+                                }
+                            }).then((value) => {
+                                //THEN RELOAD PAGE IF NEEDED 
+                                window.location = '/';
+                            })
+                        }
+					}
+                });
+            }
+        });
+    }
+    // $('#btnFacebook').on('click', async function (e) {
+    //     await $.ajax({type: "GET", url: "/api/v1/auth/facebook",
+    //     success:  function(){
+    //         window.location = '/';
+    //     }});
+    // });
+    // $('#btnGoogle').on('click', async function (e) {
+    //     await $.ajax({type: "GET", url: "/api/v1/auth/google",
+    //     success:  function(){
+    //         window.location = '/';
+    //     }});
+    // });
 };
 
 ESTOREPRO.initialize = function () {
@@ -92,5 +154,21 @@ ESTOREPRO.initialize = function () {
             curBackendEKP = new IndexListPaymentBackendEKP();
             break;
         //------------------------------------------------
-    }      
+        case 'backend/order/index':
+            curBackendEKP = new IndexListCartBackendEKP();
+            break;
+        //------------------------------------------------
+        case 'backend/order/detail':
+            curBackendEKP = new IndexListCartBackendEKP();
+            break;
+        //------------------------------------------------
+        case 'backend/entrance/view-edit-profile':
+            curBackendEKP = new IndexFormAccountBackendEKP();
+            break;
+        //------------------------------------------------
+        case 'backend/evaluate/index':
+            curBackendEKP = new IndexFormEvaluateBackendEKP();
+            break;
+        //------------------------------------------------
+    }
 }

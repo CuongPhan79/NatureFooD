@@ -51,9 +51,15 @@ module.exports = {
     for(product of productObj) {
       let imageObj = product.image.split("_");
       let type = imageObj[1].split(".");
-      product.img = imageObj[0] + "_origin." + type[1];
+      product.img = imageObj[0] + "_400x400." + type[1];
     }
-   
+    _default.link = {
+      arrlink: [],
+      linkAcctive: {
+        name: "Danh sách sản phẩm",
+        link: "/"
+      }
+    }
     sails.log.info("================================ controllers/backend/list => TYPE ================================");
     return exits.success(_default);
   }

@@ -1,4 +1,10 @@
 {
-  "Welcome": "Welcome",
-  "A brand new app.": "A brand new app."
+	"Welcome": "Welcome",
+	"A brand new app.": "A brand new app.",
+	"Vui lòng nhập đúng thông tin của email.": "Vui lòng nhập đúng thông tin của email.",
+	"Vui lòng nhập e-mail.": "Vui lòng nhập e-mail.",
+	"Vui lòng nhập mật khẩu.": "Vui lòng nhập mật khẩu.",
+	"Vui lòng nhập họ và tên đệm": "Vui lòng nhập họ và tên đệm",
+	"Vui lòng nhập tên": "Vui lòng nhập tên",
+	"Nhập lại mật khẩu.": "Nhập lại mật khẩu."
 }

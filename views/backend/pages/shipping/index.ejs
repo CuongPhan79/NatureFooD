@@ -2,145 +2,142 @@
 <% block('localCss', '<link rel="stylesheet" href="/vendors/formvalidation/formValidation.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/dropify/dropify.min.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.min.css">') %>
-<div class="main-panel">
-    <div class="content-wrapper">
+<div class="row">
+  <div class="col-lg-1 grid-margin stretch-card"></div>
+  <div class="col-lg-10 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Địa chỉ giao hàng</h4>
         <div class="row">
-            <div class="col-lg-1 grid-margin stretch-card"></div>
-            <div class="col-lg-10 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Địa chỉ giao hàng</h4>
-                  <div class="row">
-                    <div class="col-lg-12 col-xlg-12 col-md-12">
-                      <form class="form-information" id="formShipping" data-fv-framework="bootstrap4"
-                      data-fv-icon-valid="glyphicon glyphicon-ok" data-fv-icon-invalid="glyphicon glyphicon-remove"
-                      data-fv-icon-validating="glyphicon glyphicon-refresh" data-fv-live="enabled">
-                      <%if(shipping){%>
-                        <div class="form-group">
-                          <label class="form-control-label">
-                              <%= __('Họ và tên người nhận hàng') %>
-                          </label>
-                          <input type="text" id="fullName" class="form-control" name="fullName"
-                          data-fv-notempty="true" value="<%=shipping.fullName%>"
-                          data-fv-notempty-message="<%= __('Họ và tên người nhận hàng là trường bắt buộc') %>"
-                          data-fv-stringlength="true" data-fv-stringlength-min="3" data-fv-stringlength-max="70"
-                          data-fv-stringlength-message="<%= __('Họ và tên người nhận hàng tối thiểu 3 ký tự và tối đa 70 ký tự.') %>"  placeholder="Nguyễn Văn A"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-control-label">
-                                <%= __('Số điện thoại') %>
-                            </label>
-                            <input type="number" class="form-control" value="<%=shipping.phone%>"
-                                data-fv-notempty="true" data-fv-notempty-message="<%= __('Số điện thoại không được để trống') %>"
-                                data-fv-message="<%= __('Số điện thoại phải gồm 10 hoặc 11 chữ số') %>"
-                                name="phone" pattern="[0-9]{10,11}$"  placeholder="0999999999" />
-                        </div>
-                        <div class="form-group">
-                          <label class="form-control-label">
-                              <%= __('Địa chỉ nhận hàng') %>
-                          </label>
-                          <input type="text" class="form-control"
-                            name="address"  data-fv-notempty="true" value="<%=shipping.address%>"
-                            data-fv-notempty-message="<%= __('Địa chỉ nhận hàng là trường bắt buộc') %>"
-                            data-fv-stringlength="true" data-fv-stringlength-min="8" data-fv-stringlength-max="70"
-                            data-fv-stringlength-message="<%= __('Địa chỉ nhận hàng tối thiểu 8 ký tự và tối đa 70 ký tự.') %>" placeholder="20/2 Đường 185 Man Thiện, phường Tăng Nhơn Phú A, quận 9, tp HCM" ></input>
-                        </div>
-                        <div class="form-group">
-                          <label class="form-control-label">
-                            <%= __('Loại địa chỉ') %>
-                        </label>
-                          <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input id="type" type="radio" class="form-check-input" name="type" <%if(shipping.type==0){%>checked <%}%>
-                                    value="0">
-                                  <i class="input-helper"></i>
-                                  <%= __('Nhà riêng / chung cư') %>
-                                </label>
-                              </div>
-                            </li>
-                            <li class="list-inline-item">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input id="type" type="radio" class="form-check-input" name="type" <%if(shipping.type==1){%>checked <%}%>
-                                    value="1">
-                                  <i class="input-helper"></i>
-                                  <%= __('Cơ quan / công ty') %>
-                                </label>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                        <%}else{%>
-                          <div class="form-group">
-                            <label class="form-control-label">
-                                <%= __('Họ và tên người nhận hàng') %>
-                            </label>
-                            <input type="text" id="fullName" class="form-control" name="fullName"
-                            data-fv-notempty="true" 
-                            data-fv-notempty-message="<%= __('Họ và tên người nhận hàng là trường bắt buộc') %>"
-                            data-fv-stringlength="true" data-fv-stringlength-min="3" data-fv-stringlength-max="70"
-                            data-fv-stringlength-message="<%= __('Họ và tên người nhận hàng tối thiểu 3 ký tự và tối đa 70 ký tự.') %>"  placeholder="Nguyễn Văn A"/>
-                          </div>
-                          <div class="form-group">
-                              <label class="form-control-label">
-                                  <%= __('Số điện thoại') %>
-                              </label>
-                              <input type="number" class="form-control"
-                                  data-fv-notempty="true" data-fv-notempty-message="<%= __('Số điện thoại không được để trống') %>"
-                                  data-fv-message="<%= __('Số điện thoại phải gồm 10 hoặc 11 chữ số') %>"
-                                  name="phone" pattern="[0-9]{10,11}$"  placeholder="0999999999" />
-                          </div>
-                          <div class="form-group">
-                            <label class="form-control-label">
-                                <%= __('Địa chỉ nhận hàng') %>
-                            </label>
-                            <textarea type="text" class="form-control"
-                              name="address"  data-fv-notempty="true" 
-                              data-fv-notempty-message="<%= __('Địa chỉ nhận hàng là trường bắt buộc') %>"
-                              data-fv-stringlength="true" data-fv-stringlength-min="8" data-fv-stringlength-max="70"
-                              data-fv-stringlength-message="<%= __('Địa chỉ nhận hàng tối thiểu 8 ký tự và tối đa 70 ký tự.') %>" placeholder="20/2 Đường 185 Man Thiện, phường Tăng Nhơn Phú A, quận 9, tp HCM" ></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label class="form-control-label">
-                              <%= __('Loại địa chỉ') %>
-                          </label>
-                            <ul class="list-unstyled list-inline">
-                              <li class="list-inline-item">
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input id="type" type="radio" class="form-check-input" name="type" checked
-                                      value="0">
-                                    <i class="input-helper"></i>
-                                    <%= __('Nhà riêng / chung cư') %>
-                                  </label>
-                                </div>
-                              </li>
-                              <li class="list-inline-item">
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input id="type" type="radio" class="form-check-input" name="type"
-                                      value="1">
-                                    <i class="input-helper"></i>
-                                    <%= __('Cơ quan / công ty') %>
-                                  </label>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        <%}%>
-                        <div class="modal-footer row-button-fluid">
-                          <button id="btnShipping" type="submit" class="btn btn-primary cart-row">Giao đến địa chỉ này</button>
-                        </div>
-                      </form>
-                    </div>
-                </div>
+          <div class="col-lg-12 col-xlg-12 col-md-12">
+            <form class="form-information" id="formShipping" data-fv-framework="bootstrap4"
+            data-fv-icon-valid="glyphicon glyphicon-ok" data-fv-icon-invalid="glyphicon glyphicon-remove"
+            data-fv-icon-validating="glyphicon glyphicon-refresh" data-fv-live="enabled">
+            <%if(shipping){%>
+              <div class="form-group">
+                <label class="form-control-label">
+                    <%= __('Họ và tên người nhận hàng') %>
+                </label>
+                <input type="text" id="fullName" class="form-control" name="fullName"
+                data-fv-notempty="true" value="<%=shipping.fullName%>"
+                data-fv-notempty-message="<%= __('Họ và tên người nhận hàng là trường bắt buộc') %>"
+                data-fv-stringlength="true" data-fv-stringlength-min="3" data-fv-stringlength-max="70"
+                data-fv-stringlength-message="<%= __('Họ và tên người nhận hàng tối thiểu 3 ký tự và tối đa 70 ký tự.') %>"  placeholder="Nguyễn Văn A"/>
               </div>
-             
-            </div>
-        </div>
+              <div class="form-group">
+                  <label class="form-control-label">
+                      <%= __('Số điện thoại') %>
+                  </label>
+                  <input type="number" class="form-control" value="<%=shipping.phone%>"
+                      data-fv-notempty="true" data-fv-notempty-message="<%= __('Số điện thoại không được để trống') %>"
+                      data-fv-message="<%= __('Số điện thoại phải gồm 10 hoặc 11 chữ số') %>"
+                      name="phone" pattern="[0-9]{10,11}$"  placeholder="0999999999" />
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">
+                    <%= __('Địa chỉ nhận hàng') %>
+                </label>
+                <input type="text" class="form-control"
+                  name="address"  data-fv-notempty="true" value="<%=shipping.address%>"
+                  data-fv-notempty-message="<%= __('Địa chỉ nhận hàng là trường bắt buộc') %>"
+                  data-fv-stringlength="true" data-fv-stringlength-min="8" data-fv-stringlength-max="70"
+                  data-fv-stringlength-message="<%= __('Địa chỉ nhận hàng tối thiểu 8 ký tự và tối đa 70 ký tự.') %>" placeholder="20/2 Đường 185 Man Thiện, phường Tăng Nhơn Phú A, quận 9, tp HCM" ></input>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">
+                  <%= __('Loại địa chỉ') %>
+              </label>
+                <ul class="list-unstyled list-inline">
+                  <li class="list-inline-item">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input id="type" type="radio" class="form-check-input" name="type" <%if(shipping.type==0){%>checked <%}%>
+                          value="0">
+                        <i class="input-helper"></i>
+                        <%= __('Nhà riêng / chung cư') %>
+                      </label>
+                    </div>
+                  </li>
+                  <li class="list-inline-item">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input id="type" type="radio" class="form-check-input" name="type" <%if(shipping.type==1){%>checked <%}%>
+                          value="1">
+                        <i class="input-helper"></i>
+                        <%= __('Cơ quan / công ty') %>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <%}else{%>
+                <div class="form-group">
+                  <label class="form-control-label">
+                      <%= __('Họ và tên người nhận hàng') %>
+                  </label>
+                  <input type="text" id="fullName" class="form-control" name="fullName"
+                  data-fv-notempty="true" 
+                  data-fv-notempty-message="<%= __('Họ và tên người nhận hàng là trường bắt buộc') %>"
+                  data-fv-stringlength="true" data-fv-stringlength-min="3" data-fv-stringlength-max="70"
+                  data-fv-stringlength-message="<%= __('Họ và tên người nhận hàng tối thiểu 3 ký tự và tối đa 70 ký tự.') %>"  placeholder="Nguyễn Văn A"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">
+                        <%= __('Số điện thoại') %>
+                    </label>
+                    <input type="number" class="form-control"
+                        data-fv-notempty="true" data-fv-notempty-message="<%= __('Số điện thoại không được để trống') %>"
+                        data-fv-message="<%= __('Số điện thoại phải gồm 10 hoặc 11 chữ số') %>"
+                        name="phone" pattern="[0-9]{10,11}$"  placeholder="0999999999" />
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">
+                      <%= __('Địa chỉ nhận hàng') %>
+                  </label>
+                  <textarea type="text" class="form-control"
+                    name="address"  data-fv-notempty="true" 
+                    data-fv-notempty-message="<%= __('Địa chỉ nhận hàng là trường bắt buộc') %>"
+                    data-fv-stringlength="true" data-fv-stringlength-min="8" data-fv-stringlength-max="150"
+                    data-fv-stringlength-message="<%= __('Địa chỉ nhận hàng tối thiểu 8 ký tự và tối đa 150 ký tự.') %>" placeholder="20/2 Đường 185 Man Thiện, phường Tăng Nhơn Phú A, quận 9, tp HCM" ></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">
+                    <%= __('Loại địa chỉ') %>
+                </label>
+                  <ul class="list-unstyled list-inline">
+                    <li class="list-inline-item">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input id="type" type="radio" class="form-check-input" name="type" checked
+                            value="0">
+                          <i class="input-helper"></i>
+                          <%= __('Nhà riêng / chung cư') %>
+                        </label>
+                      </div>
+                    </li>
+                    <li class="list-inline-item">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input id="type" type="radio" class="form-check-input" name="type"
+                            value="1">
+                          <i class="input-helper"></i>
+                          <%= __('Cơ quan / công ty') %>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              <%}%>
+              <div class="modal-footer row-button-fluid">
+                <button id="btnShipping" type="submit" class="btn btn-primary cart-row">Giao đến địa chỉ này</button>
+              </div>
+            </form>
+          </div>
+      </div>
     </div>
+   
+  </div>
+</div>
 </div>
 <% block('localScripts', '<script src="/vendors/select2/select2.full.min.js"></script>') %>
 <% block('localScripts', '<script src="/vendors/formvalidation/formValidation.min.js"></script>') %>

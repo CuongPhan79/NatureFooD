@@ -37,7 +37,7 @@ class ListIndexCartBackendEKP {
 	handleItemActions() {
 		let _this =  this;
 		// ONCLICK BUTTON ADD CART
-		$('.quantity').on('change', function (e) {
+		$('.quantity1').on('change', function (e) {
 			let id = $(this).attr('data-id-prod');
 			let qty = $(this).val();
 			Cloud.addCart.with({ id: id, qty: qty }).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
@@ -100,8 +100,8 @@ class ListIndexCartBackendEKP {
 				return;
 			} else if (responseBody) {
 				$('#numberCart').html(responseBody.cart.totalQty);
-				$('#priceCart').html(responseBody.cart.totalPrice);
-				$('#totalPriceCart').html(responseBody.cart.totalPrice);
+				$('#priceCart').html(responseBody.cart.totalPrice + ' đ');
+				$('#totalPriceCart').html(responseBody.cart.totalPrice + ' đ');
 			}
 			//let _data = responseBody;
 		})

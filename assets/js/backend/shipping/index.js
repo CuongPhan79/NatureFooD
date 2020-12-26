@@ -22,6 +22,7 @@ class ListIndexShippingBackendEKP {
 	initialize() {
     let _this = this;
     _this.initValidation();
+    _this.initNumberProductCart();
   }
   initValidation() {
     let _this = this;
@@ -93,5 +94,16 @@ class ListIndexShippingBackendEKP {
       console.log('----- FORM ROLE ----- [SUBMIT][END]');
     });
   }
+  initNumberProductCart() {
+		Cloud.checkCart.with({}).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+			if (err) {
+				console.log(err);
+				return;
+			} else if (responseBody) {
+				$('#numberCart').html(responseBody.cart.totalQty)
+			}
+			//let _data = responseBody;
+		})
+	}
 }
 

@@ -20,8 +20,24 @@
                         <%=productObj.price%> đ
                     </h1>
                     <ul class="list-ticked">
-                      <li>Thương hiệu: <%=productObj.brand.title%></li>
-                      <li>Loại sản phẩm: <%=productObj.productType.title%></li>
+                      <li>Thương hiệu: <%=productObj.brand.title%>
+                        <p class="mb-0 text-muted">
+                          <%=productObj.brand.description%>                              
+                        </p>
+                      </li>
+                      <li>Loại sản phẩm: <%=productObj.productType.title%>
+                        <p class="mb-0 text-muted">
+                          <%=productObj.productType.description%>                            
+                        </p>
+                      </li>
+                      <li>Đánh giá trung bình: 
+                          <%if(rateAvg!=0) {%>
+                            <%=rateAvg%><i class="mdi mdi-star text-warning"></i>
+                            <%}else{%>
+                              Chưa có đánh giá
+                            <%}%>
+                      </li>
+                      
                     </ul>        
                 </div>
               </div>

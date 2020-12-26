@@ -2,15 +2,16 @@
 <html class="no-js css-menubar" lang="vi">
 
   <head>
-    <title>EstorePro Online</title>
+    <title><%=webSettings.value.name%></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="">
-    <meta name="author" content="ZiniSoft.NET">
 
     <% /* Viewport tag for sensible mobile support */ %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
     <% /*
             Stylesheets
             ========================
@@ -37,10 +38,12 @@
       <%- partial('../partials/header-logined.ejs') %>
       <div class="container-fluid page-body-wrapper">
           <div class="main-panel">
-            <%- partial('../partials/breadcrumb.ejs') %>
             <div class="content-wrapper">
+              <%- partial('../partials/breadcrumb.ejs') %>
               <%- body %>
+             
             </div>
+            <%- partial('../partials/footer.ejs') %>
           </div>
           
       </div>
@@ -76,6 +79,63 @@
   <script src="/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="/vendors/validate/validator.min.js"></script>
   <script src="/vendors/dropify/dropify.min.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AcCtBqniBWzxiugwYw-dBam2cTO2lV0HJZquiuOjQTfDE_WdLWvyKJHgLIbc446WOZCAMpmqjSX2aUMJ"></script>
+  
+  <script>
+    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+    jQuery('.quantity').each(function() {
+      var spinner = jQuery(this),
+        input = spinner.find('input[type="number"]'),
+        btnUp = spinner.find('.quantity-up'),
+        btnDown = spinner.find('.quantity-down'),
+        min = input.attr('min'),
+        max = input.attr('max');
+
+      btnUp.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue >= max) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue + 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+      btnDown.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue <= min) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue - 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+    });
+  </script>
+  <script>
+    paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '0.01'
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // This function captures the funds from the transaction.
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        alert('Transaction completed by ' + details.payer.name.given_name);
+      });
+    }
+  }).render('#paypal-button-container');
+  </script>
   <%- blocks.localScripts %>
   <script src="/js/backend/main.js"></script>
       <script>

@@ -32,6 +32,13 @@ module.exports = {
       _default.orders = orders;
       _default.cart = cart;
       _default.shipping = shipping;
+      _default.link = {
+        arrlink: [],
+        linkAcctive: {
+          name: "Lịch sử mua hàng",
+          link: "/order"
+        }
+      }
       return exits.success(_default);
     }
 };

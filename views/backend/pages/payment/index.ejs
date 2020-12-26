@@ -2,117 +2,115 @@
 <% block('localCss', '<link rel="stylesheet" href="/vendors/formvalidation/formValidation.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/dropify/dropify.min.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.min.css">') %>
-<div class="main-panel">
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-lg-1 grid-margin stretch-card"></div>
-            <div class="col-lg-10 grid-margin stretch-card">
-              <div class="col-lg-9">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Chọn hình thức thanh toán</h4>
-                    <div class="row">
-                      <div class="col-lg-12 col-xlg-12 col-md-12">
-                        <div class="form-group">
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="typePayment" id="typePayment" value="0" checked>
-                            <i class="input-helper"> <img src="/images/payment.png" alt="image" class="img-sm mr-3 rounded">Thanh toán tiền mặt khi nhận hàng</i></label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="typePayment" id="typePayment" value="1">
-                              <i class="input-helper"> <img src="/images/paypal.png" alt="image" class="img-sm mr-3 rounded">Thanh toán bằng paypal</i></label>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
+<div class="row">
+  <div class="col-lg-1 grid-margin stretch-card"></div>
+  <div class="col-lg-10 grid-margin stretch-card">
+    <div class="col-lg-9">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Chọn hình thức thanh toán</h4>
+          <div class="row">
+            <div class="col-lg-12 col-xlg-12 col-md-12">
+              <div class="form-group">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="typePayment" id="typePayment" value="0" checked>
+                  <i class="input-helper"> <img src="/images/payment.png" alt="image" class="img-sm mr-3 rounded">Thanh toán tiền mặt khi nhận hàng</i></label>
                 </div>
-                <div class="modal-footer row-button-fluid">
-                  <button id="btnPayment" class="btn btn-primary cart-row">Đặt mua</button>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="typePayment" id="typePayment1" value="1">
+                    <i class="input-helper"> <img src="/images/paypal.png" alt="image" class="img-sm mr-3 rounded">Thanh toán bằng paypal</i></label>
                 </div>
-                </div>
+                <div id="paypal-button-container"></div>
               </div>
-              <div class="col-lg-3">
-                <div class="row">
-                  <div class="col-md-12 grid-margin stretch-card">
-                    <div class="card">
-                      <div class="card-body border-bottom">
-                          <div class="row">
-                              <div class="col-md-8">
-                                  <h6 class="text-secondary">Địa chỉ giao hàng</h6>
-                              </div>
-                              <div class="col-md-4">
-                                <a href="/shipping" class="btn btn-success">Sửa</a>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                        <h4><%=shipping.fullName%></h4>
-                        <h6 class="text-secondary"><%=shipping.address%></h6>
-                        <h6 class="text-secondary"><%=shipping.phone%></h6>
-                        <h6 class="text-secondary"><%if(shipping.type==0){%>
-                          Nhà riêng / chung cư
-                          <%}else{%>
-                            Cơ quan / công ty
-                          <%}%>  
-                        </h6>
-                      </div>
-                    </div>
-                  </div> 
-                </div>
-                <div class="row">
-                  <div class="col-md-12 grid-margin stretch-card">
-                    <div class="card">
-                      <div class="card-body border-bottom">
-                          <div class="row">
-                              <div class="col-md-8">
-                                  <h6 class="text-secondary">Đơn hàng (<%=cart.totalQty%> sản phẩm)</h6>
-                              </div>
-                              <div class="col-md-4">
-                                  <a href="/cart" class="btn btn-success">Sửa</a>
-                              </div>
-                              
-                          </div>
-                      </div>
-                      <div class="card-body border-bottom">
-                        <% _.each(cart.items, function (item, index) { %>
-                          <div class="row">
-                            <div class="col-md-8">
-                              <h6 class="text-secondary"><b><%=item.qty%> x</b> <%=item.product.title%></h6>
-                            </div>
-                            <div class="col-md-4">
-                              <h6 class="text-secondary"><%=item.product.price%> đ</h6>
-                            </div>
-                          </div>
-                        <% }) %>
-                      </div>
-                      <div class="card-body border-bottom">
-                        <div class="row">
-                          <div class="col-md-8">
-                            <h6 class="text-secondary">Tạm tính</h6>
-                          </div>
-                          <div class="col-md-4">
-                            <h6 class="text-secondary"><%=cart.totalPrice%> đ</h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body border-bottom">
-                        <div class="row">
-                          <div class="col-md-8">
-                            <h6 class="font-weight-bold">Thành tiền</h6>
-                          </div>
-                          <div class="col-md-4">
-                            <h5 class="font-weight-bold"><%=cart.totalPrice%> đ</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
         </div>
+      </div>
+      <div class="modal-footer row-button-fluid">
+        <button id="btnPayment" class="btn btn-primary cart-row">Đặt mua</button>
+      </div>
+      </div>
     </div>
+    <div class="col-lg-3">
+      <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body border-bottom">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6 class="text-secondary">Địa chỉ giao hàng</h6>
+                    </div>
+                    <div class="col-md-4">
+                      <a href="/shipping" class="btn btn-success">Sửa</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+              <h4><%=shipping.fullName%></h4>
+              <h6 class="text-secondary"><%=shipping.address%></h6>
+              <h6 class="text-secondary"><%=shipping.phone%></h6>
+              <h6 class="text-secondary"><%if(shipping.type==0){%>
+                Nhà riêng / chung cư
+                <%}else{%>
+                  Cơ quan / công ty
+                <%}%>  
+              </h6>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body border-bottom">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6 class="text-secondary">Đơn hàng (<%=cart.totalQty%> sản phẩm)</h6>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/cart" class="btn btn-success">Sửa</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="card-body border-bottom">
+              <% _.each(cart.items, function (item, index) { %>
+                <div class="row">
+                  <div class="col-md-8">
+                    <h6 class="text-secondary"><b><%=item.qty%> x</b> <%=item.product.title%></h6>
+                  </div>
+                  <div class="col-md-4">
+                    <h6 class="text-secondary"><%=item.product.price%> đ</h6>
+                  </div>
+                </div>
+              <% }) %>
+            </div>
+            <div class="card-body border-bottom">
+              <div class="row">
+                <div class="col-md-8">
+                  <h6 class="text-secondary">Tạm tính</h6>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="text-secondary"><%=cart.totalPrice%> đ</h6>
+                </div>
+              </div>
+            </div>
+            <div class="card-body border-bottom">
+              <div class="row">
+                <div class="col-md-8">
+                  <h6 class="font-weight-bold">Thành tiền</h6>
+                </div>
+                <div class="col-md-4">
+                  <h5 class="font-weight-bold"><%=cart.totalPrice%> đ</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 </div>
 <% block('localScripts', '<script src="/vendors/select2/select2.full.min.js"></script>') %>
 <% block('localScripts', '<script src="/vendors/formvalidation/formValidation.min.js"></script>') %>

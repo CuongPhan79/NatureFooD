@@ -41,7 +41,7 @@ class ListIndexProductBackendEKP {
 			} else if (responseBody) {
 				$('#numberCart').html(responseBody.cart.totalQty);
 				$('#priceCart').html(responseBody.cart.totalPrice);
-				$('#totalPriceCart').html(responseBody.cart.totalPrice);
+				$('#totalPriceCart').html(responseBody.cart.totalPrice + ' đ');
 			}
 			//let _data = responseBody;
 		})

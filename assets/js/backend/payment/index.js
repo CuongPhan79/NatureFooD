@@ -19,35 +19,53 @@ class ListIndexPaymentgBackendEKP {
 	}
 	initialize() {
     let _this = this;
-    _this.handleItemActions();
+	_this.handleItemActions();
+	_this. initNumberProductCart();
   }
   handleItemActions() {
-    let _this = this;
-    //ONCLICK ADD
-    let typePayment = $('#typePayment').val();
-    _this.btnPayment.click(async function () {
-        await $.ajax({type: "POST", url: "/api/payment",data: {
-            typePayment: typePayment
-        },
-        success: async function(result){
-          if (result) {
-						swal({
-							title: 'Đặt hàng thành công !',
-							icon: 'success',
-							button: {
-								text: "Đến đơn hàng của tôi",
-								value: true,
-								visible: true,
-								className: "btn btn-primary"
-							}
-						}).then((value) => {
-							//THEN RELOAD PAGE IF NEEDED
-							window.location = `/order`;
-						})
-					}
-        }});
-    })
-    //END ONCLICK ADD
-  }
+		let _this = this;
+		//ONCLICK ADD
+		_this.btnPayment.click(async function () {
+			let typePayment = $('#typePayment').val();
+			await $.ajax({type: "POST", url: "/api/payment",data: {
+				typePayment: typePayment
+			},
+			success: async function(result){
+			if (result) {
+							swal({
+								title: 'Đặt hàng thành công !',
+								icon: 'success',
+								button: {
+									text: "Đến đơn hàng của tôi",
+									value: true,
+									visible: true,
+									className: "btn btn-primary"
+								}
+							}).then((value) => {
+								//THEN RELOAD PAGE IF NEEDED
+								window.location = `/order`;
+							})
+						}
+			}});
+		});
+		$('#typePayment1').on('click', function (e) {
+			$('#paypal-button-container').show();
+		})
+		$('#typePayment').on('click', function (e) {
+			$('#paypal-button-container').hide();
+		})
+
+	}
+	  initNumberProductCart() {
+		Cloud.checkCart.with({}).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
+			if (err) {
+				console.log(err);
+				return;
+			} else if (responseBody) {
+				$('#numberCart').html(responseBody.cart.totalQty)
+			}
+			//let _data = responseBody;
+		})
+	}
 }
 

@@ -1,0 +1,76 @@
+<% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.css">') %>
+<% block('localCss', '<link rel="stylesheet" href="/vendors/formvalidation/formValidation.css">') %>
+<% block('localCss', '<link rel="stylesheet" href="/vendors/dropify/dropify.min.css">') %>
+<% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.min.css">') %>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-5">
+                    <img width="250px" class="mx-auto d-block img-thumbnail" src=<%=productObj.img%>>
+                </div>
+                <div class="col-7">
+                    <div class="card-title">
+                      <%=productObj.title%>
+                    </div>
+                    <p class="card-description"><%=productObj.description%></p>
+                    <div class="course-rating-percente-wrapper">
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <%if(rate) {%>
+                      <h4>Bạn đã đánh giá cho sản phẩm này là:</h4>
+                      <%for(let i=0;i< rate.rate;i++) { %>
+                      <i class="mdi mdi-star text-warning"></i>
+                      <%}%>
+                      <br>
+                      <br>
+                      <h4>Đánh giá trung bình: 
+                        <%if(rateAvg!=0) {%>
+                          <%=rateAvg%><i class="mdi mdi-star text-warning"></i>
+                          <%}else{%>
+                            Chưa có đánh giá
+                          <%}%>
+                      </h4>
+                    <%}else{%>
+                      <h4>Đánh giá cho sản phẩm này:</h4>
+                      <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" checked/>
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                      </div>
+                    <%}%>
+                </div>
+              </div>
+             
+              <div class="modal-footer row-button-fluid">
+                <a class="btn btn-light"  href="/">Trở về</a>
+                <button id="btnEvaluate" name="btnEvaluate" class="btn btn-primary cart-row" data-idProduct="<%=productObj.id%>" data-idCustomer="<%=userActive.id%>">Gửi đánh giá</button>
+              </div>
+            </div>
+          </div>
+    </div>
+     
+      <div class="col-1"></div>
+  
+</div>
+</div>
+
+
+
+<% block('localScripts', '<script src="/vendors/select2/select2.full.min.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/formvalidation/formValidation.min.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/formvalidation/framework/bootstrap4.min.js"></script>') %>
+<% block('localScripts', '<script src="/js/backend/evaluate/index.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/sweetalert/sweetalert.min.js"></script>') %>
+<% block('localScripts', '<script src="/vendors/select2/select2.js"></script>') %></div>

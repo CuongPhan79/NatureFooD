@@ -28383,7 +28383,7 @@ div.tagsinput span.tag a {
 .navbar .navbar-brand-wrapper .navbar-brand-inner-wrapper .navbar-brand img {
   width: calc(257px - 150px);
   max-width: 100%;
-  height: 28px;
+  height: 40px;
   margin: auto;
   vertical-align: middle;
 }
@@ -29620,5 +29620,11 @@ div.tagsinput span.tag a {
     display: none;
   }
 }
-
+.logo img {
+  width: calc(257px - 150px);
+  max-width: 100%;
+  height: 46px;
+  margin: auto;
+  vertical-align: middle;
+}
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */

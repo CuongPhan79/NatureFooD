@@ -2,93 +2,83 @@
 <% block('localCss', '<link rel="stylesheet" href="/vendors/formvalidation/formValidation.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/dropify/dropify.min.css">') %>
 <% block('localCss', '<link rel="stylesheet" href="/vendors/select2/select2.min.css">') %>
-<div class="main-panel">
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-lg-1 grid-margin stretch-card"></div>
-            <div class="col-lg-10 grid-margin stretch-card">
-                    <% if (cart == 0 || cart.totalQty == 0 ) { %>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="empty">
-                                        <img src="/images/cartEmpty.png">
-                                        <br>
-                                        <br>
-                                        <h5>Không có sản phẩm nào trong giỏ hàng của bạn.</h5>
-                                        <br>
-                                        <br>
-                                        <a href="/" class="btn btn-success">Tiếp tục mua sắm</a>
-                                    </div>
-                                    
-                                </div>
+<div class="row">
+    <div class="col-lg-1 grid-margin stretch-card"></div>
+    <div class="col-lg-10 grid-margin stretch-card">
+            <% if (cart == 0 || cart.totalQty == 0 ) { %>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="empty">
+                                <img src="/images/cartEmpty.png">
+                                <br>
+                                <br>
+                                <h5>Không có sản phẩm nào trong giỏ hàng của bạn.</h5>
+                                <br>
+                                <br>
+                                <a href="/" class="btn btn-success">Tiếp tục mua sắm</a>
                             </div>
-                        </div>
-                    <% } else { %>
-                    <div class="col-lg-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                    <th>#</th>
-                                    <th>Số lượng</th>
-                                    <th>Giá</th>
-                                    <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% Object.keys(cart.items).forEach( function(item) { %>
-                                    <tr>
-                                    <td> <%= cart.items[item].product.title %> </td>
-                                    <td> 
-                                    <form action="/update-cart-item" method="post">
-                                        <input type="hidden" name="_csrf" value="<%= _csrf %>">
-                                        <input type="number" class="quantity" value="<%= cart.items[item].qty %>" data-id-prod= <%=cart.items[item].product.id%>>
-                                    </form>
-                                    </td>
-                                    <td> <%= cart.items[item].product.price *  cart.items[item].qty%> đ</td>
-                                    <td><button class="remove-row"  data-id-prod= <%=cart.items[item].product.id%>>x</button></td>
-                                    </tr>
-                                    <% }) %>
-                                </tbody>
-                                </table>
-                            </div>
+                            
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body border-bottom">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6 class="text-secondary">Tạm tính</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 id="priceCart" class="text-right"><%=cart.totalPrice%> đ</h6>
-                                    </div>
-                                    
+                </div>
+            <% } else { %>
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                        <tbody>
+                            <% Object.keys(cart.items).forEach( function(item) { %>
+                            <tr>
+                            <td width="40%"><img src="<%=cart.items[item].product.image%>" width="50px"  class="img-sm rounded-circle"> <%= cart.items[item].product.title %> </td>
+                            <td width="20%">
+                            <form action="/update-cart-item" method="post">
+                                <input type="hidden" name="_csrf" value="<%= _csrf %>">
+                                <div class="quantity">
+                                    <input type="number" class="quantity1" min="1" max="10" step="1" value="<%= cart.items[item].qty %>" data-id-prod= <%=cart.items[item].product.id%>>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6 class="text-secondary">Thành tiền</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h4 class="text-right text-danger" id="totalPriceCart" ><%=cart.totalPrice%> đ</h4>
-                                        <small id="emailHelp" class="form-text text-muted text-right">(Đã bao gồm VAT nếu có)</small>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/shipping" class="btn btn-success btn-lg btn-block btn-sm mt-3">Tiến hành đặt hàng</a>
+                            </form>
+                            </td>
+                            <td width="30%"> <%= cart.items[item].product.price%> đ</td>
+                            <td width="10%"><button class="btn btn-inverse-success btn-icon remove-row"  data-id-prod= <%=cart.items[item].product.id%>><i class="mdi mdi-close-box"></i></button></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                        </table>
                     </div>
-                    <% } %>
+                </div>
             </div>
-            <div class="col-lg-1 grid-margin stretch-card"></div>
-        </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body border-bottom">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-secondary">Tạm tính</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 id="priceCart" class="text-right"><%=cart.totalPrice%></h6>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-secondary">Thành tiền</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="text-right text-danger" id="totalPriceCart" ><%=cart.totalPrice%></h4>
+                                <small id="emailHelp" class="form-text text-muted text-right">(Đã bao gồm VAT nếu có)</small>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <a href="/shipping" class="btn btn-success btn-lg btn-block btn-sm mt-3">Tiến hành đặt hàng</a>
+            </div>
+            <% } %>
     </div>
+    <div class="col-lg-1 grid-margin stretch-card"></div>
 </div>
 
 

@@ -18,6 +18,13 @@ Cloud.setup({
             "args": ["emailAddress", "password"]
         },
         //-------------------------LOGIN---------------- 
+         //REGISTER
+         "register": {
+            "verb": "POST",
+            "url": "/api/customer/register",
+            "args": ["emailAddress", "firstName", "lastName", "password", "passwordConfirm"]
+        },
+        //-------------------------REGISTER---------------- 
         "buyProduct": {
             "verb": "POST",
             "url": "/api/product/buy",
@@ -41,6 +48,11 @@ Cloud.setup({
         "addShipping": {
             "verb": "POST",
             "url": "/api/addShipping",
+            "args": []
+        },
+        "editProfile": {
+            "verb": "PATCH",
+            "url": "/api/v1/backend/customer/edit",
             "args": []
         },
     }

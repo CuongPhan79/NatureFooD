@@ -23,8 +23,6 @@ module.exports = {
       phone: {
         type: 'string',
         maxLength: 11,
-        required: true,
-        unique: true
       },
       birthday: {
         type: 'string',
@@ -36,11 +34,6 @@ module.exports = {
           'Securely hashed representation of the user\'s login password.',
         protect: true,
         example: '2$28a8eabna301089103-13948134nad'
-      },
-      address: {
-        type: 'string',
-        description: 'The User address',
-        example: 'abc street, ward 5, Ho Chi Minh City'
       },
       orders: {
         collection: 'order',
