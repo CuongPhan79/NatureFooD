@@ -94,14 +94,16 @@ class ListIndexCartBackendEKP {
 		});
 	}
 	initNumberProductCart() {
+		const currencyFormat = num => (Math.round(num * 1000) / 1000).toFixed(',').replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    	this.currencyFormat = currencyFormat;
 		Cloud.checkCart.with({}).protocol('jQuery').exec((err, responseBody, responseObjLikeJqXHR) => {
 			if (err) {
 				console.log(err);
 				return;
 			} else if (responseBody) {
 				$('#numberCart').html(responseBody.cart.totalQty);
-				$('#priceCart').html(responseBody.cart.totalPrice + ' đ');
-				$('#totalPriceCart').html(responseBody.cart.totalPrice + ' đ');
+				$('#priceCart').html(this.currencyFormat(responseBody.cart.totalPrice) + ' đ');
+				$('#totalPriceCart').html(this.currencyFormat(responseBody.cart.totalPrice) + ' đ');
 			}
 			//let _data = responseBody;
 		})

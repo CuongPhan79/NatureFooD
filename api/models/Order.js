@@ -1,5 +1,8 @@
 module.exports = {
     attributes: {
+      code: {
+        type: 'string'
+      },
       orderDate: {
         type: 'string',
         required: true

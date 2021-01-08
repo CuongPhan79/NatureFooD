@@ -33,7 +33,7 @@
                         <div class="card-body border-bottom">
                             <div class="row">
                                 <div class="col-md-10">
-                                    <h5>Đơn hàng <a href="/order/detail/<%=order.id%>"><%=order.id%></a></h5> 
+                                    <h5>Đơn hàng <a href="/order/detail/<%=order.id%>"><%=order.code%></a></h5> 
                                     <h6 class="text-secondary">Đặt ngày <%=order.orderDate%></h6>
                                 </div>
                                 <div class="col-md-2">
@@ -41,6 +41,8 @@
                                         <h5 class="badge badge-success badge-pill"> Đang giao hàng</h5>
                                     <% }else if(order.status == 2) {%>
                                         <h5 class="badge badge-light badge-pill"> Đã giao hàng</h5>
+                                    <% }else if(order.status == 3) {%>
+                                        <h5 class="badge badge-danger badge-pill"> Đã bị hủy</h5>
                                     <% } else{%>
                                         <h5 class="badge badge-warning badge-pill"> Đang chờ xác nhận </h5>
                                     <% } %>

@@ -48,10 +48,13 @@ module.exports = {
     _default.totalDraft = totalDraft;
     _default.productObj = productObj;
     _default.search = title;
+    const currencyFormat = num => (Math.round(num * 1000) / 1000).toFixed(',').replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    this.currencyFormat = currencyFormat;
     for(product of productObj) {
       let imageObj = product.image.split("_");
       let type = imageObj[1].split(".");
       product.img = imageObj[0] + "_400x400." + type[1];
+      product.price = this.currencyFormat(product.price);
     }
     _default.link = {
       arrlink: [],

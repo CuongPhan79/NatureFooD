@@ -24,6 +24,9 @@ module.exports = {
         type: 'string',
         maxLength: 11,
       },
+      address: {
+        type: 'string',
+      },
       birthday: {
         type: 'string',
         example: 'YYYY-MM-DD'

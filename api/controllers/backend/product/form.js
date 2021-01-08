@@ -36,6 +36,9 @@ module.exports = {
     let imageObj = productObj.image.split("_");
     let type = imageObj[1].split(".");
     productObj.img = imageObj[0] + "_origin." + type[1];
+    const currencyFormat = num => (Math.round(num * 1000) / 1000).toFixed(',').replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    this.currencyFormat = currencyFormat;
+    productObj.price = this.currencyFormat(productObj.price);
     _default.productObj = productObj;
     _default.link = {
       arrlink: [{

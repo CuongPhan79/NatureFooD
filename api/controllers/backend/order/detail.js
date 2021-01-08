@@ -33,6 +33,12 @@ module.exports = {
       var cart = 0
       }
       //_default.orders = orders;
+      const currencyFormat = num => (Math.round(num * 1000) / 1000).toFixed(',').replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      this.currencyFormat = currencyFormat;
+      orderObj.informationReceived.cart.totalPrice = this.currencyFormat(orderObj.informationReceived.cart.totalPrice);
+      _.each(orderObj.informationReceived.cart.items, function (item, index) {
+        item.product.price = currencyFormat(item.product.price);
+      })
       _default.orderObj = orderObj;
       _default.listOrderProduct = listOrderProduct;
       _default.cart = cart;

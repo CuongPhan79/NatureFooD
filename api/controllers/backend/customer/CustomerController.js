@@ -74,6 +74,7 @@ module.exports = {
       gender: params.gender,
       emailAddress: params.emailAddress, // REQUIRED
       phone: params.phone, // REQUIRED
+      address: params.address,
       birthday: params.birthday
     };
     if (params.password) {
